@@ -1,12 +1,33 @@
 
 import type { IErrorResponse } from '@/interface/response/error';
 import axios, { AxiosError } from 'axios';
+import { getDefaultStore } from 'jotai';
+import authStore from '@/store/auth';
 
 const axiosInstance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api',
 });
 
-export default axiosInstance;
+// Get Jotai store instance
+const store = getDefaultStore();
+
+// Request interceptor to add bearer token
+axiosInstance.interceptors.request.use(
+  config => {
+    const token = store.get(authStore.token);
+    config.headers.Accept = 'application/json';
+    config.headers['Content-Type'] = 'application/json';
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
 
 axiosInstance.interceptors.response.use(
   response => {
@@ -46,3 +67,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(newError);
   }
 );
+
+export default axiosInstance;

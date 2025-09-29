@@ -1,4 +1,4 @@
-export interface IAuthResponse {
+export interface ILoginResponse {
   user: {
     id: number;
     name: string;

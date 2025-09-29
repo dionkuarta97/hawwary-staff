@@ -1,9 +1,9 @@
-import type { IAuthResponse } from '@/interface/auth/response';
+import type { ILoginResponse } from '@/interface/auth/response';
 import { atomWithStorage } from 'jotai/utils';
 
 const tokenState = atomWithStorage<string | null>('token', localStorage.getItem('token') || null);
 
-const userState = atomWithStorage<IAuthResponse['user'] | null>(
+const userState = atomWithStorage<ILoginResponse['user'] | null>(
   'user',
   localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null
 );
