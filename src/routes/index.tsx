@@ -7,6 +7,7 @@ import HeaderWrapper from '@/components/wrapper/header';
 import Operasional from '@/pages/operasional';
 import Transaksi from '@/pages/home/components/transaksi';
 import TambahTransaksi from '@/pages/home/components/tambah-transaksi';
+import DetailTransaksi from '@/pages/home/components/detail-transaksi';
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -27,6 +28,10 @@ const routes = createBrowserRouter([
               {
                 path: '/home/tambah-transaksi',
                 element: <TambahTransaksi />,
+              },
+              {
+                path: '/home/detail-transaksi/:id',
+                element: <DetailTransaksi />,
               },
             ],
           },

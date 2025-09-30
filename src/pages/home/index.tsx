@@ -3,6 +3,7 @@ import Filter from './components/filter';
 import useHomeController from './lib/useHomeController';
 import { Typography } from '@material-tailwind/react';
 import { Outlet } from 'react-router';
+import DataTransaksi from './components/data-transaksi';
 
 const Home = () => {
   const { transaksi, filter, setFilter, isLoading } = useHomeController();
@@ -20,6 +21,15 @@ const Home = () => {
               </Typography>
             </div>
           ))}
+        {!isLoading && transaksi && transaksi.metadata.total > 0 && (
+          <DataTransaksi
+            data={transaksi.metadata.data}
+            page={transaksi.metadata.current_page}
+            per_page={transaksi.metadata.per_page}
+            total_page={transaksi.metadata.last_page}
+            onPageChange={page => setFilter({ ...filter, page: page })}
+          />
+        )}
       </div>
       <div className="w-1/3 flex flex-col  h-full">
         <Outlet />

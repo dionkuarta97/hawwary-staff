@@ -7,14 +7,23 @@ interface IDatePickerProps {
   minDate?: Date | null;
   maxDate?: Date | null;
   label?: string;
+  placeholder?: string;
 }
 
-const DatePicker = ({ value, onChange, minDate, maxDate, label }: IDatePickerProps) => {
-  const [date, setDate] = useState<Date | null>(value || new Date());
+const DatePicker = ({
+  value,
+  onChange,
+  minDate,
+  maxDate,
+  label,
+  placeholder,
+}: IDatePickerProps) => {
+  const [date, setDate] = useState<Date | null>(value || null);
   return (
     <div className="flex flex-col gap-1">
       {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
       <Datepicker
+        placeholder={placeholder}
         value={date}
         onChange={date => {
           setDate(date);

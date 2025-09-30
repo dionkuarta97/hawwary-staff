@@ -7,7 +7,7 @@ import Navbar from '@/components/navbar';
 const HeaderWrapper = () => {
   const user = useAtomValue(authStore.user);
   return (
-    <div className="flex h-screen flex-col gap-4">
+    <div className="flex bg-gray-50 h-screen flex-col overflow-hidden gap-4">
       <div className="flex flex-row justify-between items-center px-8 py-4 bg-white shadow-lg">
         <Typography type="h5" className=" font-semibold text-cyan-800">
           Hawwary Staff
@@ -21,7 +21,7 @@ const HeaderWrapper = () => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col w-full gap-4 h-full pb-8 px-8">
+      <div className="flex flex-col w-full gap-4 h-full pb-8 px-8 overflow-hidden">
         <Navbar />
         <Outlet />
       </div>

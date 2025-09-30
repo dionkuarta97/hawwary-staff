@@ -5,24 +5,40 @@ interface IDefaultSelectProps {
   placeholder: string;
   onSelect: (value: string) => void;
   value: string;
+  label?: string;
+  required?: boolean;
 }
 
-const DefaultSelect = ({ options, placeholder, onSelect, value }: IDefaultSelectProps) => {
+const DefaultSelect = ({
+  options,
+  placeholder,
+  onSelect,
+  value,
+  label,
+  required,
+}: IDefaultSelectProps) => {
   return (
-    <Select size="md">
-      <Select.Trigger value={value} defaultValue={value} placeholder={placeholder} />
-      <Select.List>
-        {options.map(option => (
-          <Select.Option
-            key={option.value}
-            value={option.value}
-            onClick={() => onSelect(option.value)}
-          >
-            {option.label}
-          </Select.Option>
-        ))}
-      </Select.List>
-    </Select>
+    <div className="flex flex-col gap-1">
+      {label && (
+        <label className="text-sm font-medium text-gray-700">
+          {label} {required && <span className="text-sm font-medium text-red-500">*</span>}
+        </label>
+      )}
+      <Select value={value} onChange={onSelect} className="bg-white" size="md">
+        <Select.Trigger value={value} defaultValue={value} placeholder={placeholder} />
+        <Select.List>
+          {options.map(option => (
+            <Select.Option
+              key={option.value}
+              value={option.value}
+              onClick={() => onSelect(option.value)}
+            >
+              {option.label}
+            </Select.Option>
+          ))}
+        </Select.List>
+      </Select>
+    </div>
   );
 };
 

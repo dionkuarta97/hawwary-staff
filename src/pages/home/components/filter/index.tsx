@@ -1,6 +1,7 @@
 import DatePicker from '@/components/date-picker';
 import DefaultSelect from '@/components/default-select';
 import type { IGetTransaksiRequestParams } from '@/interface/transaksi/request';
+import { format } from 'date-fns';
 
 interface IFilterProps {
   filter: IGetTransaksiRequestParams;
@@ -15,7 +16,7 @@ const Filter = ({ filter, setFilter }: IFilterProps) => {
           label="Start Date"
           value={filter.start_date ? new Date(filter.start_date) : null}
           onChange={date =>
-            setFilter({ ...filter, start_date: date ? date.toISOString() : undefined })
+            setFilter({ ...filter, start_date: date ? format(date, 'yyyy-MM-dd') : undefined })
           }
         />
         <DatePicker
@@ -23,7 +24,7 @@ const Filter = ({ filter, setFilter }: IFilterProps) => {
           label="End Date"
           value={filter.end_date ? new Date(filter.end_date) : null}
           onChange={date =>
-            setFilter({ ...filter, end_date: date ? date.toISOString() : undefined })
+            setFilter({ ...filter, end_date: date ? format(date, 'yyyy-MM-dd') : undefined })
           }
         />
       </div>

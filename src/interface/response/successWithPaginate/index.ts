@@ -6,6 +6,6 @@ export interface ISuccessPaginationResponse<T> {
       current_page: number;
       total: number;
       per_page: number;
-      total_page: number;
+      last_page: number;
     };
   }
