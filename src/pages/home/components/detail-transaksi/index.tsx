@@ -26,7 +26,7 @@ const DetailTransaksi = () => {
     queryClient,
   } = useDetailTransaksiController();
   return (
-    <div className="flex flex-col border border-gray-300 rounded-[20px] p-4 pb-6 gap-4 min-h-[82vh] max-h-[82vh] w-full overflow-hidden">
+    <div className="flex flex-col border bg-white border-gray-300 rounded-[10px] p-4 pb-6 gap-4 min-h-[82vh] max-h-[82vh] w-full overflow-hidden">
       <div className="flex flex-row justify-between">
         <Typography type="h4">Detail Transaksi</Typography>
         <IconButton

@@ -16,7 +16,7 @@ const Transaksi = () => {
       <div className="flex flex-col items-center mt-10 justify-center gap-4">
         <img src={receipt} alt="receipt" className="w-full h-full rounded-md object-contain" />
         <Typography className="text-center text-gray-500" type="h5">
-          Welcome to Hawwary Staff
+          Fitur untuk mengelola transaksi
         </Typography>
       </div>
     </div>
