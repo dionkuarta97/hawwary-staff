@@ -24,7 +24,7 @@ interface IDataTransaksiProps {
 const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IDataTransaksiProps) => {
   const navigate = useNavigate();
   return (
-    <div className="overflow-x-auto flex flex-col gap-2 min-h-[70vh] max-h-[70vh] justify-between bg-white rounded-md">
+    <div className="overflow-x-auto flex flex-col gap-2 min-h-[67vh] max-h-[67vh] justify-between bg-white rounded-md">
       <Table hoverable>
         <TableHead>
           <TableRow>
@@ -48,6 +48,7 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
               <TableCell>{format(item.created_at, 'dd MMMM yyyy, HH:mm')}</TableCell>
               <TableCell>
                 <Badge
+                  className="w-fit"
                   color={
                     item.status === 'sukses'
                       ? 'success'
@@ -63,7 +64,7 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
           ))}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-center py-4 gap-1">
+      <div className="flex items-center justify-center py-2 gap-1">
         <Button
           className="cursor-pointer"
           variant="outline"

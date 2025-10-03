@@ -1,5 +1,6 @@
-import { Button } from '@material-tailwind/react';
+import { Button, Typography } from '@material-tailwind/react';
 import { useNavigate } from 'react-router';
+import receipt from '@/assets/receipt.png';
 
 const Transaksi = () => {
   const navigate = useNavigate();
@@ -12,6 +13,12 @@ const Transaksi = () => {
       >
         Tambah Transaksi
       </Button>
+      <div className="flex flex-col items-center mt-10 justify-center gap-4">
+        <img src={receipt} alt="receipt" className="w-full h-full rounded-md object-contain" />
+        <Typography className="text-center text-gray-500" type="h5">
+          Welcome to Hawwary Staff
+        </Typography>
+      </div>
     </div>
   );
 };

@@ -3,9 +3,11 @@ import { useAtomValue } from 'jotai';
 import authStore from '@/store/auth';
 import { Outlet } from 'react-router';
 import Navbar from '@/components/navbar';
+import useLogout from '@/hooks/useLogout';
 
 const HeaderWrapper = () => {
   const user = useAtomValue(authStore.user);
+  const { logout } = useLogout();
   return (
     <div className="flex bg-gray-50 h-screen flex-col overflow-hidden gap-4">
       <div className="flex flex-row justify-between items-center px-8 py-4 bg-white shadow-lg">
@@ -16,7 +18,7 @@ const HeaderWrapper = () => {
           <Typography type="h6" className="text-cyan-800">
             Hi, {user?.name}
           </Typography>
-          <Button color="secondary" className="cursor-pointer" size="sm">
+          <Button color="secondary" className="cursor-pointer" size="sm" onClick={logout}>
             Logout
           </Button>
         </div>

@@ -10,8 +10,8 @@ interface IFilterProps {
 
 const Filter = ({ filter, setFilter }: IFilterProps) => {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-row gap-2">
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-row gap-2">
         <DatePicker
           label="Start Date"
           value={filter.start_date ? new Date(filter.start_date) : null}
@@ -28,7 +28,7 @@ const Filter = ({ filter, setFilter }: IFilterProps) => {
           }
         />
       </div>
-      <div className="flex flex-row gap-2">
+      <div className="flex w-full flex-row gap-2">
         <DefaultSelect
           value={filter.order || 'newest'}
           options={[

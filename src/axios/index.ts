@@ -3,7 +3,8 @@ import type { IErrorResponse } from '@/interface/response/error';
 import axios, { AxiosError } from 'axios';
 import { getDefaultStore } from 'jotai';
 import authStore from '@/store/auth';
-
+// https://api.hawwarydentalcare.com
+// http://127.0.0.1:8000/api
 const axiosInstance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api',
 });
@@ -48,6 +49,20 @@ axiosInstance.interceptors.response.use(
           message: error.response.data?.message || 'Terjadi kesalahan pada server',
           data: error.response.data?.data || null,
         };
+
+        // Auto logout jika error 401 (Unauthorized)
+        if (error.response.status === 401) {
+          // Clear token dan user dari store
+          store.set(authStore.token, null);
+          store.set(authStore.user, null);
+          
+          // Clear localStorage
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          
+          // Reload halaman untuk redirect ke login
+          window.location.reload();
+        }
       } else if (error.request) {
         // Request dibuat tapi tidak ada response
         newError = {

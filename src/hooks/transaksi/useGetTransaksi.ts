@@ -5,7 +5,13 @@ import type { IGetTransaksiRequestParams } from "@/interface/transaksi/request";
 import { useQuery } from "@tanstack/react-query";
 
 
-const getTransaksi = async (params: IGetTransaksiRequestParams) : Promise<ISuccessPaginationResponse<ITransaksiResponse[]>> => {
+const getTransaksi = async (params: IGetTransaksiRequestParams) : Promise<ISuccessPaginationResponse<ITransaksiResponse[], {
+  total: string,
+  pending: string,
+  success: string;
+  failed: string;
+  total_modal: number;
+}>> => {
   const response = await axiosInstance.get('/staff/transaksi', { params });
   return response.data;
 };

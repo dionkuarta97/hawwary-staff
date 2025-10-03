@@ -68,16 +68,39 @@ export interface IGetNoRMResponse {
 export interface IGetDokterResponse {
   id: number;
   name: string;
-  deleted_at: string | null;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface IGetDantelResponse {
   id: number;
   name: string;
-  deleted_at: string | null;
-  created_at: string;
-  updated_at: string;
 }
 
+export interface ICreateTransaksiResponse {
+  tranksaksi: {
+    pasien_id: number;
+    docter_id: number;
+    dantel_id: number;
+    total_amount: number;
+    net_amount: number;
+    description: string;
+    updated_at: string;
+    created_at: string;
+    id: number;
+    pasien: {
+    id: number;
+    nama: string;
+    no_rm: number;
+    domisili: string;
+    no_hp: string | null;
+            },
+    docter: {
+    id: number;
+    name: string;
+            },
+    dantel: {
+    id: number;
+    name: string;
+            }
+        },
+    operational: ITransaksiOperationalResponse | null;
+}

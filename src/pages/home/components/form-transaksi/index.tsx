@@ -1,4 +1,4 @@
-import type { IGetPasienResponse } from '@/interface/transaksi/response';
+import type { IGetPasienResponse, ITransaksiResponse } from '@/interface/transaksi/response';
 import { Button, Menu, Spinner, Typography } from '@material-tailwind/react';
 import DefaultAccordion from '@/components/default-accordion';
 import { format } from 'date-fns';
@@ -11,9 +11,15 @@ interface IFormTransaksiProps {
   pasienDetail: IGetPasienResponse;
   onPressBack: () => void;
   onEdit: () => void;
+  transaksiDetail?: ITransaksiResponse;
 }
 
-const FormTransaksi = ({ pasienDetail, onPressBack, onEdit }: IFormTransaksiProps) => {
+const FormTransaksi = ({
+  pasienDetail,
+  onPressBack,
+  onEdit,
+  transaksiDetail,
+}: IFormTransaksiProps) => {
   const {
     setSearchDocter,
     docter,
@@ -32,7 +38,7 @@ const FormTransaksi = ({ pasienDetail, onPressBack, onEdit }: IFormTransaksiProp
     disableButton,
     handleCreateTransaksi,
     isPendingCreateTransaksi,
-  } = useFormTransaksi(pasienDetail.id);
+  } = useFormTransaksi(pasienDetail.id, transaksiDetail, onPressBack);
   return (
     <div className="flex flex-col h-full ">
       <div className="flex flex-row items-center justify-between">
@@ -200,7 +206,7 @@ const FormTransaksi = ({ pasienDetail, onPressBack, onEdit }: IFormTransaksiProp
               color="secondary"
               onClick={() => {
                 setModal(null);
-                setForm({ ...form, modal: null });
+                setForm({ ...form, modal: null, net_amount: form.total_amount });
               }}
             >
               Cancel Modal

@@ -1,4 +1,4 @@
-export interface ISuccessPaginationResponse<T> {
+export interface ISuccessPaginationResponse<T,S = null | any> {
     success: true;
     message: string;
     metadata: {
@@ -7,5 +7,7 @@ export interface ISuccessPaginationResponse<T> {
       total: number;
       per_page: number;
       last_page: number;
+      statistics?: S;
     };
   }
+  
