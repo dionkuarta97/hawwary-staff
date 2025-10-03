@@ -20,7 +20,7 @@ const useNavbarController = () => {
   }, [pathname]);
 
   // Normalize pathname untuk menangani kasus "/home" yang seharusnya sama dengan "/"
-  const normalizedPathname = pathname.startsWith('/home') ? '/' : pathname;
+  const normalizedPathname = pathname.startsWith('/home') ? '/' : pathname.startsWith('/operasional') ? '/operasional' : pathname;
 
   return {
     navigate,

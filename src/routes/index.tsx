@@ -8,6 +8,9 @@ import Operasional from '@/pages/operasional';
 import Transaksi from '@/pages/home/components/transaksi';
 import TambahTransaksi from '@/pages/home/components/tambah-transaksi';
 import DetailTransaksi from '@/pages/home/components/detail-transaksi';
+import OperationalComponent from '@/pages/operasional/components/operational';
+import TambahOperational from '@/pages/operasional/components/tambah-operational';
+import DetailOperational from '@/pages/operasional/components/detail-operational';
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -38,6 +41,24 @@ const routes = createBrowserRouter([
           {
             path: '/operasional',
             element: <Operasional />,
+            children: [
+              {
+                path: '/operasional',
+                element: <OperationalComponent />,
+              },
+              {
+                path: '/operasional/tambah-operasional',
+                element: <TambahOperational />,
+              },
+              {
+                path: '/operasional/detail-operational/:id',
+                element: <DetailOperational />,
+              },
+              {
+                path: '/operasional/edit-operasional/:id',
+                element: <TambahOperational />,
+              },
+            ],
           },
         ],
       },

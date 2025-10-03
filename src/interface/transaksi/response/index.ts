@@ -104,3 +104,5 @@ export interface ICreateTransaksiResponse {
         },
     operational: ITransaksiOperationalResponse | null;
 }
+
+

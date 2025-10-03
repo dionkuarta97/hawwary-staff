@@ -44,3 +44,4 @@ export interface ICreateTransaksiRequestBody {
    "description" : string
   } | null
 }
+

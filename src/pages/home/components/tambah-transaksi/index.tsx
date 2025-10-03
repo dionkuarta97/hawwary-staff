@@ -97,6 +97,19 @@ const TambahTransaksi = () => {
                   </div>
                 </div>
               ))}
+
+              <Typography className="text-center mt-4" type="h6">
+                Tidak ada pasien yang ditemukan
+              </Typography>
+              <Button
+                color="secondary"
+                className="cursor-pointer"
+                onClick={() => {
+                  setAction('tambah');
+                }}
+              >
+                Tambah Pasien Baru
+              </Button>
             </div>
           )}
           {id && pasienDetail && (

@@ -151,7 +151,6 @@ const FormTransaksi = ({
             setForm({
               ...form,
               total_amount: Number(numericValue) || 0,
-              net_amount: Number(numericValue) || 0,
             });
           }}
         />
@@ -192,7 +191,6 @@ const FormTransaksi = ({
               onChange={e => {
                 const numericValue = e.target.value.replace(/\./g, '');
                 setModal({ ...modal, amount: Number(numericValue) || 0 });
-                setForm({ ...form, net_amount: form.total_amount - Number(numericValue) || 0 });
               }}
             />
             <DefaultTextArea

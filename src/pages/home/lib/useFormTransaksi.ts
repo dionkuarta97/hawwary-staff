@@ -86,7 +86,7 @@ const useFormTransaksi = (pasien_id: number, transaksiDetail?: ITransaksiRespons
     console.log(form);
     const handleCreateTransaksi = () => {
         if(transaksiDetail) {
-            updateTransaksi({ ...form, id: transaksiDetail.id }, {
+            updateTransaksi({ ...form, net_amount: form.modal ? form.total_amount - form.modal.amount : form.total_amount, id: transaksiDetail.id }, {
                 onSuccess: () => {
                     clearForm();
                     toast.success('Berhasil', 'Transaksi berhasil diupdate');
@@ -103,7 +103,10 @@ const useFormTransaksi = (pasien_id: number, transaksiDetail?: ITransaksiRespons
                 }
             });
         } else {
-        createTransaksi(form, {
+        createTransaksi({
+            ...form,
+            net_amount: form.modal ? form.total_amount - form.modal.amount : form.total_amount,
+        }, {
             onSuccess: (data) => {
                 clearForm();
                 toast.success('Berhasil', 'Transaksi berhasil dibuat');

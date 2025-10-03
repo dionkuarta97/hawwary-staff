@@ -1,4 +1,4 @@
-import type { ITransaksiResponse } from '@/interface/transaksi/response';
+import type { IGetOperationalResponse } from '@/interface/operational/response';
 import {
   Badge,
   Table,
@@ -14,14 +14,20 @@ import { Button } from '@material-tailwind/react';
 import { NavArrowLeft, NavArrowRight } from 'iconoir-react';
 import { useNavigate } from 'react-router';
 
-interface IDataTransaksiProps {
-  data: ITransaksiResponse[];
+interface IDataOperationalProps {
+  data: IGetOperationalResponse[];
   page: number;
   per_page: number;
   total_page: number;
   onPageChange: (newPage: number) => void;
 }
-const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IDataTransaksiProps) => {
+const DataOperational = ({
+  data,
+  page,
+  per_page,
+  total_page,
+  onPageChange,
+}: IDataOperationalProps) => {
   const navigate = useNavigate();
   return (
     <div className="overflow-x-auto flex flex-col gap-2 min-h-[67vh] max-h-[67vh] justify-between bg-white rounded-md">
@@ -29,9 +35,8 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
         <TableHead>
           <TableRow>
             <TableHeadCell className="bg-gray-200 w-1.5">No</TableHeadCell>
-            <TableHeadCell className="bg-gray-200">Nama</TableHeadCell>
+            <TableHeadCell className="bg-gray-200">Nama Operasional</TableHeadCell>
             <TableHeadCell className="bg-gray-200">Amount</TableHeadCell>
-            <TableHeadCell className="bg-gray-200">Domisili</TableHeadCell>
             <TableHeadCell className="bg-gray-200">Tanggal</TableHeadCell>
             <TableHeadCell className="bg-gray-200 w-2.5">status</TableHeadCell>
           </TableRow>
@@ -41,16 +46,13 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
             <TableRow
               className="cursor-pointer"
               key={index}
-              onClick={() => navigate(`/home/detail-transaksi/${item.id}`)}
+              onClick={() => navigate(`/operasional/detail-operational/${item.id}`)}
             >
               <TableCell>{index + 1 + (page - 1) * per_page}</TableCell>
               <TableCell className="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">
-                {item.pasien.nama}
+                {item.name}
               </TableCell>
-              <TableCell className="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{`Rp ${Number(item.total_amount).toLocaleString('id-ID')}`}</TableCell>
-              <TableCell className="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">
-                {item.pasien.domisili}
-              </TableCell>
+              <TableCell className="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{`Rp ${Number(item.amount).toLocaleString('id-ID')}`}</TableCell>
               <TableCell className="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">
                 {format(item.created_at, 'dd MMMM yyyy, HH:mm')}
               </TableCell>
@@ -58,9 +60,9 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
                 <Badge
                   className="w-fit"
                   color={
-                    item.status === 'sukses'
+                    item.status === 'success'
                       ? 'success'
-                      : item.status === 'gagal'
+                      : item.status === 'failed'
                         ? 'failure'
                         : 'warning'
                   }
@@ -142,4 +144,4 @@ const DataTransaksi = ({ data, page, per_page, total_page, onPageChange }: IData
   );
 };
 
-export default DataTransaksi;
+export default DataOperational;

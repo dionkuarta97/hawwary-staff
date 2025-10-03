@@ -1,0 +1,62 @@
+import DatePicker from '@/components/date-picker';
+import DefaultSelect from '@/components/default-select';
+import type { IGetOperationalRequestParams } from '@/interface/operational/request';
+import { format } from 'date-fns';
+
+interface IFilterProps {
+  filter: IGetOperationalRequestParams;
+  setFilter: (filter: IGetOperationalRequestParams) => void;
+}
+
+const Filter = ({ filter, setFilter }: IFilterProps) => {
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-row gap-2">
+        <DatePicker
+          label="Start Date"
+          value={filter.start_date ? new Date(filter.start_date) : null}
+          onChange={date =>
+            setFilter({ ...filter, start_date: date ? format(date, 'yyyy-MM-dd') : undefined })
+          }
+        />
+        <DatePicker
+          minDate={filter.start_date ? new Date(filter.start_date) : undefined}
+          label="End Date"
+          value={filter.end_date ? new Date(filter.end_date) : null}
+          onChange={date =>
+            setFilter({ ...filter, end_date: date ? format(date, 'yyyy-MM-dd') : undefined })
+          }
+        />
+      </div>
+      <div className="flex w-full flex-row gap-2">
+        <DefaultSelect
+          value={filter.order || 'newest'}
+          options={[
+            { label: 'Terbaru', value: 'newest' },
+            { label: 'Terlama', value: 'oldest' },
+          ]}
+          placeholder="Urutkan Berdasarkan"
+          onSelect={value => setFilter({ ...filter, order: value === 'newest' ? 'desc' : 'asc' })}
+        />
+        <DefaultSelect
+          value={filter.status || 'all'}
+          options={[
+            { label: 'All', value: 'all' },
+            { label: 'Pending', value: 'pending' },
+            { label: 'Success', value: 'success' },
+            { label: 'Failed', value: 'failed' },
+          ]}
+          placeholder="Filter by Status"
+          onSelect={value =>
+            setFilter({
+              ...filter,
+              status: value === 'all' ? undefined : (value as 'pending' | 'success' | 'failed'),
+            })
+          }
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Filter;

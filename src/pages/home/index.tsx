@@ -8,7 +8,6 @@ import LabelWithValue from '@/components/label-with-value';
 
 const Home = () => {
   const { transaksi, filter, setFilter, isLoading } = useHomeController();
-  console.log(transaksi);
 
   return (
     <div className="flex flex-row h-full w-full gap-8">
